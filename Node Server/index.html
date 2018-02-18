@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="matthew">
+    <link rel="icon" href="assets/img/favicon-2.ico">
+
+    <title>Manual Mode</title>
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+  </head>
+  <body style="background-color: black;">
+    <button onclick="toggleMan()" id="boo" style="width: 100px;height: 100px;border: 0px; border-radius: 50px; background-color:blue;color:white">man on</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+    var man = false;
+    function toggleMan(){
+      $.get('/toggleman', function(res){
+        man = res;
+        console.log(man);
+        if(man){
+          $('#boo').html('man off');
+        }else{
+          $('#boo').html('man on');
+        }
+      });
+    }
+    </script>
+  </body>
+</html>

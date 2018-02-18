@@ -1,0 +1,9 @@
+/rxtx
+/F5XA*
+/Peripheral*
+/Node\ Server/node_modules
+*.metadata
+*.settings
+*bin
+*.classpath
+*.project
