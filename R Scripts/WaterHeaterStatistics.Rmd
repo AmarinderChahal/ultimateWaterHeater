@@ -1,0 +1,121 @@
+---
+title: "Water Usage Statistics"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE, cache=F}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(readxl)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+
+source("Utilities.R")
+
+# Read from formatted file
+# Main Heater numbers per housing unit
+fuel_water_units <- read_excel(
+  sheet=1,
+  "~/Documents/Dev/DataScience/HomeWaterHeater/hc8_all/HomeWaterUnits.xls",
+  na=c("Q","N"))
+size_water_units <- read_excel(
+  sheet=2,
+  "~/Documents/Dev/DataScience/HomeWaterHeater/hc8_all/HomeWaterUnits.xls",
+  na=c("Q","N"))
+age_water_units <- read_excel(
+  sheet=3,
+  "~/Documents/Dev/DataScience/HomeWaterHeater/hc8_all/HomeWaterUnits.xls",
+  na=c("Q","N"))
+
+fuel_water_members <- read_excel(
+  sheet=2,
+  "~/Documents/Dev/DataScience/HomeWaterHeater/hc8_all/HomeWaterMembers.xls",
+  na=c("Q","N"))
+size_water_members <- read_excel(
+  sheet=3,
+  "~/Documents/Dev/DataScience/HomeWaterHeater/hc8_all/HomeWaterMembers.xls",
+  na=c("Q","N"))
+age_water_members <- read_excel(
+  sheet=1,
+  "~/Documents/Dev/DataScience/HomeWaterHeater/hc8_all/HomeWaterMembers.xls",
+  na=c("Q","N"))
+
+fuel_water_years <- read_excel(
+  sheet=2,
+  "~/Documents/Dev/DataScience/HomeWaterHeater/hc8_all/HomeWaterYears.xls",
+  na=c("Q","N"))
+size_water_years <- read_excel(
+  sheet=1,
+  "~/Documents/Dev/DataScience/HomeWaterHeater/hc8_all/HomeWaterYears.xls",
+  na=c("Q","N"))
+age_water_years <- read_excel(
+  sheet=3,
+  "~/Documents/Dev/DataScience/HomeWaterHeater/hc8_all/HomeWaterYears.xls",
+  na=c("Q","N"))
+```
+
+
+## Examples of Water & Energy waste
+
+- "The average water heater for a family of 5+ is around 50 gallons"
+- Number of household members * 12 = about average number of gallons used
+- The truth in the U.S. is inverted.
+
+## Number of Household Members vs Count by Heater Size
+
+```{r membersVsSize}
+exploreTypeVsCount(
+  tidyData(size_water_members),
+  "Size of main water heater",
+  "Size"
+  )
+```
+
+## Even more explicit
+
+```{r warning=F}
+# Average household need # of members * 12 gallons of water
+swm_tidy <- tidyData(size_water_members[1:3,]) %>%
+  mutate("Average Waste" = rep(c(30,49,60),5) - sort(rep(1:5,3)) * 12) %>%
+  mutate("Wasting water" = `Average Waste` < 0)
+
+ggplot(data=swm_tidy,aes(x=`Unit Type`,fill=`Size of main water heater`)) +
+  geom_col(aes(y=`Unit Count (million)`),position="dodge") +
+  geom_point(aes(y=`Average Waste`,size=`Average Waste`),position=position_dodge(width = 0.9)) +
+  guides(fill=guide_legend(title="Size of heater")) +
+  xlab("") + ggtitle("Heater Size and Average Waste versus # of Household Members") + 
+  scale_y_continuous(sec.axis = sec_axis( ~ .,name = "Gallons of waste"))
+
+```
+
+## Water Heater Type in Households based on Year of Construction
+
+```{r fuelWaterYears}
+exploreTypeVsCount(
+  tidyData(fuel_water_years),
+  "Fuel used by main water heater",
+  "Fuel source"
+  )
+```
+
+## Same, but based on % to demonstrate progression
+
+```{r echo=F,warning=F,message=F}
+fwy_tidy <- tidyData(fuel_water_years)
+fwy_freq <- group_by(
+  fwy_tidy,
+  "Unit Type"=get(colnames(fwy_tidy)[2])) %>%
+  summarize("Total"=sum(`Unit Count (million)`))
+
+fwy_ratio <- left_join(fwy_tidy,fwy_freq) %>%
+  mutate("Percentage"=`Unit Count (million)`/Total * 100)
+
+ggplot(data=fwy_ratio,aes(x=`Unit Type`,y=`Percentage`,
+                             fill=`Fuel used by main water heater`)) +
+  geom_col() +
+  guides(fill=guide_legend(title="Fuel source")) +
+  xlab("")
+```
+
+
