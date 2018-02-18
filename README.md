@@ -1,12 +1,12 @@
-#The Ultimate Water Heater
+# The Ultimate Water Heater
 
 February 2018
 
-##Authors
+## Authors
 
 This is the TreeHacks 2018 project created by Amarinder Chahal and Matthew Chan.
 
-##About
+## About
 
 Drawing inspiration from a diverse set of real-world information, we designed a system with the goal of efficiently utilizing only electricity to heat and pre-heat water as a means to dramatically save energy, eliminate the use of natural gases, enhance the standard of living, and preserve water as a natural resource in abundance.
 
@@ -22,13 +22,13 @@ Some key features we have:
 - Saving, on average, 5 gallons per shower, or over **__100 million gallons of water daily__**. ***
 - Cheap cost of installation and immediate returns on investment
 
-##Inspiration
+## Inspiration
 
 Observing the RhoAI data dump of 2015 Californian home appliance uses, through some R scripts, it becomes clear that water-heating is not only inefficient but performed in an outdated manner. Analyzing several trends drew important conclusions: many water heaters are not only large consumers of unnecessary gasses, but also frequently neglected, most likely due to the difficulty in installation and repair. 
 
 So we set our eyes on a safe, cheap, and easily accessed water heater with the goal of efficiency and environmental friendliness. In examining the inductive heating process replacing old stovetops with modern ones, we found the necessary answer. It accounted for every flaw the data decried regarding water-heaters, and would eventually prove to be even better.
 
-##How It Works
+## How It Works
 
 Our project essentially operates in several core parts running simulataneously:
 
@@ -46,36 +46,38 @@ The mobile device grants the average consumer a means of making the most out of 
 
 The Internet of Things provides even more versatility to the convenience of the application in Smart Homes and with other smart devices. The implementation of Alexa encourages the water heater as a front-leader in an evolutionary revolution for the modern age.
 
-##Built With:
+## Built With:
 
-(In no particular order of importance, though all are nonetheless important...)
+(In no particular order of importance)
 
--RhoAI
--R
--C++ (Arduino 101)
--Node.js
--Tears
--HTML
--Alexa API
--Swift, Xcode
--BLE
--Buckets and Water
--Java
--RXTX (Serial Communication Library)
--Mathematica
--MatLab (assistance)
--Red Bull, Soylent
--Tetrix (for support)
--Home Depot
--Electronics Express
--Breadboard, resistors, capacitors, jumper cables
--Arduino Digital Temperature Sensor (DS18B20)
--Electric Tape, Duct Tape
--Funnel, for testing
--Excel
--Javascript
--jQuery
--Intense Sleep Deprivation
--The wonderful support of the people around us, and TreeHacks as a whole. Thank you all!
+- RhoAI
+- R
+- C++ (Arduino 101)
+- Node.js
+- Tears
+- HTML
+- Alexa API
+- Swift, Xcode
+- BLE
+- Buckets and Water
+- Java
+- RXTX (Serial Communication Library)
+- Mathematica
+- MatLab (assistance)
+- Red Bull, Soylent
+- Tetrix (for support)
+- Home Depot
+- Electronics Express
+- Breadboard, resistors, capacitors, jumper cables
+- Arduino Digital Temperature Sensor (DS18B20)
+- Electric Tape, Duct Tape
+- Funnel, for testing
+- Excel
+- Javascript
+- jQuery
+- Intense Sleep Deprivation
+- The wonderful support of the people around us, and TreeHacks as a whole. Thank you all!
 
-Special thanks to awesome friends Michelle and Darren for providing moral support.
+*** According to the Washington Post: https://www.washingtonpost.com/news/energy-environment/wp/2015/03/04/your-shower-is-wasting-huge-amounts-of-energy-and-water-heres-what-to-do-about-it/?utm_term=.03b3f2a8b8a2
+
+Special thanks to our awesome friends Michelle and Darren for providing moral support in person!
