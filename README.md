@@ -1,5 +1,7 @@
 # The Ultimate Water Heater
 
+## Winner of: Greatest Impact Grand Prize, Most Interdisciplinary Hack, RhoAI Energy Prize, 3rd Best Hardware Hack
+
 February 2018
 
 ## Authors
